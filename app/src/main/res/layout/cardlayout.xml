@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="160dp"
-
+            android:id="@+id/img"
             android:scaleType="fitXY"/>
 
         <LinearLayout
@@ -35,23 +35,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:visibility="gone"
                     android:fontFamily="sans-serif-light"
                     android:lineSpacingExtra="4dp"
                     android:padding="8dp"
                     android:text="UID" />
 
                 <TextView
-                    android:id="@+id/distance"
+                    android:id="@+id/name"
+                    android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Distance" />
+                    android:text="Name" />
             </LinearLayout>
+
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="BOOK TICKETS"
-                android:layout_gravity="end"
-                android:gravity="right"
+                android:text="VIEW"
+                android:background="@color/colorAccent"
                 android:id="@+id/buttonCard"/>
         </LinearLayout>
     </LinearLayout>
