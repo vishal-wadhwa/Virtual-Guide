@@ -15,16 +15,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
-
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".TicketActivity" />
         <activity android:name=".VerifyBarCode" />
-        <activity android:name=".SouvernierActivity"></activity>
+        <activity android:name=".SouvernierActivity" />
 
-        <service android:name="com.kontakt.sdk.android.ble.service.ProximityService" android:exported="false"/>
-
+        <service
+            android:name="com.kontakt.sdk.android.ble.service.ProximityService"
+            android:exported="false" />
 
         <activity
             android:name=".BasicActivity"
@@ -36,7 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RailwayActivity"></activity>
     </application>
-
 
 </manifest>
