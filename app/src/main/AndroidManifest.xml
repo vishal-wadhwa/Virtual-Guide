@@ -22,7 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".TicketActivity" />
+        <activity android:name=".VerifyBarCode" />
+        <activity android:name=".SouvernierActivity"></activity>
+
         <service android:name="com.kontakt.sdk.android.ble.service.ProximityService" android:exported="false"/>
+
     </application>
 
 
