@@ -25,15 +25,19 @@
 
         <activity android:name=".TicketActivity" />
         <activity android:name=".VerifyBarCode" />
-        <activity android:name=".SouvernierActivity"></activity>
+        <activity android:name=".SouvernierActivity" />
 
-        <service android:name="com.kontakt.sdk.android.ble.service.ProximityService" android:exported="false"/>
-
+        <service
+            android:name="com.kontakt.sdk.android.ble.service.ProximityService"
+            android:exported="false" />
 
         <activity
             android:name=".BasicActivity"
             android:label="@string/title_activity_basic"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".RailwayActivity"></activity>
     </application>
 
 

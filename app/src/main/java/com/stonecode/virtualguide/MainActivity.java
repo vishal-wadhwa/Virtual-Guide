@@ -32,8 +32,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ProximityManagerContract proximityManager;
-    private HashMap<String, Integer> hmIID = new HashMap<>();
-    private ArrayList<Integer> discoveredBeacons = new ArrayList<>();
+    private HashMap<String,Integer> hmIID=new HashMap<>();
+    private HashMap<String,String> room=new HashMap<>();
+    private ArrayList<Integer> discoveredBeacons=new ArrayList<>();
     private static final String TAG = "MainActivity";
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent i = new Intent(MainActivity.this,TicketActivity.class);
+        startActivity(i);
         KontaktSDK.initialize("YBVNhCQdbYqQtkxOZyAPmyshZkQXhKUl");
         proximityManager = new ProximityManager(this);
         proximityManager.setEddystoneListener(createEddystoneListener());
@@ -62,6 +65,22 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(mLayoutManager);
         mAdapter = new MyRecyclerViewAdapter(getDataSet(), MainActivity.this);
         rv.setAdapter(mAdapter);
+        hmIID.put("0117c55ec086",4);
+        hmIID.put("0117c55fc452",5);
+
+        room.put("0117c55be3a8","Humayun Tomb");
+        room.put("0117c55d6660","Humayun Tomb");
+        room.put("0117c555c65f","Humayun Tomb");
+
+        room.put("0117c55ec086","Entrance");
+
+        room.put("0117c55fc452","Railway Station");
+
+
+
+        rv= (RecyclerView) findViewById(R.id.beacon_list);
+
+
     }
 
     @Override
@@ -130,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Sjsj", "Eddystone discovered: namespace=" + eddystone.getNamespace() + "instance id =" + eddystone.getInstanceId() + " uid=" + eddystone.getUniqueId());
                 if (!discoveredBeacons.contains(hmIID.get(eddystone.getInstanceId()))) {
                     discoveredBeacons.add(hmIID.get(eddystone.getInstanceId()));
+                }
 
                     mAdapter = new MyRecyclerViewAdapter(getDataSet(), MainActivity.this);
                     rv.setAdapter(mAdapter);
@@ -144,6 +164,15 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onEddystonesUpdated(List<IEddystoneDevice> eddystones, IEddystoneNamespace namespace) {
+                double min=eddystones.get(0).getDistance();
+                String IID=eddystones.get(0).getInstanceId();
+                for(IEddystoneDevice i:eddystones){
+                    if(i.getDistance()<min){
+                        min=i.getDistance();
+                        IID=i.getInstanceId();
+                    }
+                }
+                setTitle(room.get(IID));
             }
 
             @Override
