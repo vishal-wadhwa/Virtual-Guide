@@ -4,6 +4,7 @@ error_reporting(-1);
 
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/../db_handle/db_handler.php';
+require __DIR__.'/../railway_handle/railway_request.php';
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -26,4 +27,10 @@ $app->get('/humayun-tomb/{id}' , function (Request $req, Response $res) {
 	return $res->withJson($data);
 });
 
+$app->get('/train-list/{stn_code}' , function (Request $req, Response $resp) {
+	$stn_code=$req->getAttribute('stn_code');
+	$rail=new railway_requests();
+	$data=$rail->getArrivingTrains($stn_code);
+	return $data;//data is json_encoded
+});
 $app->run();

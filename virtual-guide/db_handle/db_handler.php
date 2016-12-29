@@ -70,7 +70,7 @@ class db_handler {
 
 			while($row = $res->fetch_array(MYSQLI_ASSOC)) {
 				//$data=retrieveData($id);
-				echo $row;
+				//echo $row;
 				$places[$i]=$row;
 				$i++;
 			}
