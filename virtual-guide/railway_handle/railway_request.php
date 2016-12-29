@@ -38,5 +38,5 @@ class railway_requests {
 	}
 }
 
-$r=new railway_requests();
+//$r=new railway_requests();
 //$r->getArrivingTrains('ndls');
