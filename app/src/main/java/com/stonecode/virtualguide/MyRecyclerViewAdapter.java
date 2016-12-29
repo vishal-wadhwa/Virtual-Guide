@@ -49,7 +49,6 @@ public class MyRecyclerViewAdapter extends RecyclerView
     public void setOnItemClickListener(MyClickListener myClickListener) {
 
         this.myClickListener = myClickListener;
-
     }
 
     public MyRecyclerViewAdapter(ArrayList<CardObject> myCardSet, Activity activity) {
@@ -76,17 +75,16 @@ public class MyRecyclerViewAdapter extends RecyclerView
             @Override
             public void onClick(View view) {
 
-                if(position==4)
-                {
-                    Intent i = new Intent(act,TicketActivity.class);
+                if (holder.service.getText().equals("Railway station")) {
+                    Intent i = new Intent(act, RailwayActivity.class);
+                    act.startActivity(i);
+                } else if (holder.service.getText().equals("Entry Room")) {
+                    Intent i = new Intent(act, TicketActivity.class);
+                    act.startActivity(i);
+                } else {
+                    Intent i = new Intent(act, BasicActivity.class);
                     act.startActivity(i);
                 }
-                else if(position==5)
-                {
-
-                }
-                Intent i = new Intent(act, BasicActivity.class);
-                act.startActivity(i);
 
             }
         });

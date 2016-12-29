@@ -133,6 +133,7 @@ public class RailwayActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
 //            startDownload();
+
             progressDialog.dismiss();
             super.onPostExecute(aVoid);
         }
