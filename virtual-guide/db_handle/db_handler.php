@@ -88,5 +88,5 @@ class db_handler {
 	}
 }
 
-//$db=new db_handler();
-//echo ($db->getDataById(2))."ok\n";
+$db=new db_handler();
+//var_dump($db->getDataById(2));

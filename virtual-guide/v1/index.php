@@ -16,6 +16,7 @@ $app=new \Slim\App(/*$config*/);
 $app->get('/humayun-tomb/all', function (Request $req, Response $res) {
 	$dbh=new db_handler();
 	$data=$dbh->getAllData();
+	//echo $data;
 	return $res->withJson($data);
 });
 
