@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ProximityManagerContract proximityManager;
     private HashMap<String,Integer> hmIID=new HashMap<>();
+    private HashMap<String,String> room=new HashMap<>();
     private ArrayList<Integer> discoveredBeacons=new ArrayList<>();
     private static final String TAG = "MainActivity";
     RecyclerView rv;
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         hmIID.put("0117c55be3a8",1);
         hmIID.put("0117c55d6660",2);
         hmIID.put("0117c555c65f",3);
+
+        hmIID.put("011C55EC086",4);
+        hmIID.put("0117C55FC0452",5);
 
         rv= (RecyclerView) findViewById(R.id.beacon_list);
 
@@ -89,7 +93,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onEddystonesUpdated(List<IEddystoneDevice> eddystones, IEddystoneNamespace namespace) {
-
+                double min=eddystones.get(0).getDistance();
+                String IID=eddystones.get(0).getInstanceId();
+                for(IEddystoneDevice i:eddystones){
+                    if(i.getDistance()<min){
+                        min=i.getDistance();
+                        IID=i.getInstanceId();
+                    }
+                }
             }
 
             @Override
