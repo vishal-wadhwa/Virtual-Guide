@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent i = new Intent(MainActivity.this, TicketActivity.class);
-        startActivity(i);
         KontaktSDK.initialize("YBVNhCQdbYqQtkxOZyAPmyshZkQXhKUl");
         proximityManager = new ProximityManager(this);
         proximityManager.setEddystoneListener(createEddystoneListener());
@@ -97,8 +95,15 @@ public class MainActivity extends AppCompatActivity {
             }
             if (discoveredBeacons.get(index) == 2) {
                 obj = new CardObject(R.drawable.barcode, "Humanyun Room");
-            } else if (discoveredBeacons.get(index) == 3) {
+            }
+            if (discoveredBeacons.get(index) == 3) {
                 obj = new CardObject(R.drawable.barcode, "Hasi Ali Room");
+            }
+            if (discoveredBeacons.get(index) == 4) {
+                obj = new CardObject(R.drawable.barcode, "ENtry Room");
+            }
+            if (discoveredBeacons.get(index) == 3) {
+                obj = new CardObject(R.drawable.barcode, "Railway station");
             }
 
 //            CardObject obj = new CardObject(R.drawable.uberlogo,"UBER");

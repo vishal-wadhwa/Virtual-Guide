@@ -68,7 +68,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
     }
 
     @Override
-    public void onBindViewHolder(final DataObjectHolder holder, int position) {
+    public void onBindViewHolder(final DataObjectHolder holder, final int position) {
         holder.imageDrawable.setImageResource(mCardSet.get(position).getmDrawableImage());
         holder.service.setText(mCardSet.get(position).getmService());
 
@@ -76,7 +76,15 @@ public class MyRecyclerViewAdapter extends RecyclerView
             @Override
             public void onClick(View view) {
 
+                if(position==4)
+                {
+                    Intent i = new Intent(act,TicketActivity.class);
+                    act.startActivity(i);
+                }
+                else if(position==5)
+                {
 
+                }
                 Intent i = new Intent(act, BasicActivity.class);
                 act.startActivity(i);
 
