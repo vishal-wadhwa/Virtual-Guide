@@ -43,8 +43,18 @@ public class MainActivity extends AppCompatActivity {
         hmIID.put("0117c55d6660",2);
         hmIID.put("0117c555c65f",3);
 
-        hmIID.put("011C55EC086",4);
-        hmIID.put("0117C55FC0452",5);
+        hmIID.put("0117c55ec086",4);
+        hmIID.put("0117c55fc452",5);
+
+        room.put("0117c55be3a8","Humayun Tomb");
+        room.put("0117c55d6660","Humayun Tomb");
+        room.put("0117c555c65f","Humayun Tomb");
+
+        room.put("0117c55ec086","Entrance");
+
+        room.put("0117c55fc452","Railway Station");
+
+
 
         rv= (RecyclerView) findViewById(R.id.beacon_list);
 
@@ -101,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         IID=i.getInstanceId();
                     }
                 }
+                setTitle(room.get(IID));
             }
 
             @Override
