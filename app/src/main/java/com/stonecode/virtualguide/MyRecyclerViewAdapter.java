@@ -83,6 +83,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
                     act.startActivity(i);
                 } else {
                     Intent i = new Intent(act, BasicActivity.class);
+                    i.putExtra("name",holder.service.getText());
                     act.startActivity(i);
                 }
 

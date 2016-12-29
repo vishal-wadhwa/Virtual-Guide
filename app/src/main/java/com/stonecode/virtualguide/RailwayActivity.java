@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,15 +27,21 @@ import java.util.ArrayList;
 
 public class RailwayActivity extends AppCompatActivity {
 
-    //private String TRAIN_DATA = "http://10.0.0.30/Virtual-Guide/virtual-guide/v1/train-list/";
+    private String TRAIN_DATA = "http://10.0.0.30/Virtual-Guide/virtual-guide/v1/train-list/ndls";
     ArrayList<String> trainList=new ArrayList<>();
+    ArrayAdapter<String> ada;
     ListView listView;
+    //public static final int RAIL_CODE = 232;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_railway);
 
         new JsonData().execute();
+        listView= (ListView) findViewById(R.id.rail_data);
+
+        ada = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,trainList);
+        listView.setAdapter(ada);
     }
 
 
@@ -94,9 +103,9 @@ public class RailwayActivity extends AppCompatActivity {
 
     private class JsonData extends AsyncTask<Void, Void, Void> {
         HttpHandler sh = new HttpHandler();
-        String reqUrl = "http://10.0.0.30/Virtual-Guide/virtual-guide/v1/train-list/";
+        //String reqUrl = "http://10.0.0.30/Virtual-Guide/virtual-guide/v1/train-list/";
         JSONObject jsonObject;
-
+        String displayTemplate= " is arriving at ";
         ProgressDialog progressDialog;
 
         @Override
@@ -111,10 +120,16 @@ public class RailwayActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             //station code
-            String jsonStr = sh.makeServiceCall(reqUrl+"nzm");    //The JSON comes into jsonStr;
+            String jsonStr = sh.makeServiceCall(TRAIN_DATA);    //The JSON comes into jsonStr;
             JSONObject j = null;
             try {
                 j = new JSONObject(jsonStr);
+                Log.d("json", "jsonStr: " + j);
+                JSONArray jsonArray=j.getJSONArray("train");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jt=jsonArray.getJSONObject(i);
+                    trainList.add(jt.getString("name") + displayTemplate + jt.getString("scharr"));
+                }
 //                JSONArray j1 = new JSONArray(j);
 //                Log.d(TAG,"j1: "+j1);
 //                String s = j.getString("place");
@@ -123,7 +138,7 @@ public class RailwayActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Log.d("json", "jsonStr: " + j);
+
 
 //                Log.d(TAG, "jsonStr: " + j.getString("url"));
 //                audioURI = Uri.parse(j.getString("url"));
@@ -133,7 +148,7 @@ public class RailwayActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
 //            startDownload();
-
+            ada.notifyDataSetChanged();
             progressDialog.dismiss();
             super.onPostExecute(aVoid);
         }

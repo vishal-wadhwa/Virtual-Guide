@@ -37,7 +37,8 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".RailwayActivity"></activity>
+        <activity android:name=".RailwayActivity"
+            android:exported="true"></activity>
     </application>
 
 

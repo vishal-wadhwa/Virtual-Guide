@@ -1,5 +1,6 @@
 package com.stonecode.virtualguide;
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -10,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -18,6 +21,8 @@ public class BasicActivity extends AppCompatActivity {
     private static final String TAG = "BasicActivity";
     int state=0;
     MediaPlayer mediaPlayer;
+    TextView tvtv;
+    ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +30,34 @@ public class BasicActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        img = (ImageView) findViewById(R.id.basic_title_image);
+        tvtv= (TextView) findViewById(R.id.basic_tv);
+
+        Intent i = getIntent();
+        String name = i.getStringExtra("name");
+        setTitle(name);
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         String url = "http://10.0.0.30/Virtual-Guide/virtual-guide/data/isa_khan_niazi.mp3";
+
+
+        if(name.equals("Isa Khan's Complex"))
+        {
+            url = "http://10.0.0.30/Virtual-Guide/virtual-guide/data/isa_khan_niazi.mp3";
+            if(MainActivity.placeIntro[0]!=null) {
+                tvtv.setText(MainActivity.placeIntro[0]);
+            }
+            img.setImageResource(R.drawable.isa_khan_mosque);
+
+        }
+        else
+        {
+            url = "http://10.0.0.30/Virtual-Guide/virtual-guide/data/topping_things_up.mp3";
+            if(MainActivity.placeIntro[2]!=null) {
+                tvtv.setText(MainActivity.placeIntro[2]);
+            }
+            img.setImageResource(R.drawable.topping_thing_up);
+        }
 
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);

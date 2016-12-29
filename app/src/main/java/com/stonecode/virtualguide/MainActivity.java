@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
             if (discoveredBeacons.get(index) == 5) {
                 obj = new CardObject(R.drawable.barcode, "Railway station");
             }
-
 //            CardObject obj = new CardObject(R.drawable.uberlogo,"UBER");
             Log.d(TAG, "index:: " + index);
             results.add(index, obj);

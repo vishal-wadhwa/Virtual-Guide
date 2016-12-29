@@ -16,25 +16,26 @@
             android:id="@+id/main.collapsing"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
-            >
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                android:scaleType="fitXY"
-                android:id="@+id/basic_title_image"/>
+            <ImageView
+                android:id="@+id/basic_title_image"
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
                 android:scaleX="0.45"
-                android:scaleY="0.45"
-                />
+                android:scaleY="0.45" />
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
