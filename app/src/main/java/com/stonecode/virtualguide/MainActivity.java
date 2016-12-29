@@ -3,7 +3,10 @@ package com.stonecode.virtualguide;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.kontakt.sdk.android.ble.connection.OnServiceReadyListener;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private HashMap<String,Integer> hmIID=new HashMap<>();
     private ArrayList<Integer> discoveredBeacons=new ArrayList<>();
     private static final String TAG = "MainActivity";
+    RecyclerView rv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         hmIID.put("0117c55be3a8",1);
         hmIID.put("0117c55d6660",2);
         hmIID.put("0117c555c65f",3);
+
+        rv= (RecyclerView) findViewById(R.id.beacon_list);
+
+
     }
 
     @Override
@@ -92,4 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     }
+
+
+
 }
