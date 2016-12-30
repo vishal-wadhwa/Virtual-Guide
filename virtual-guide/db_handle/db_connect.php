@@ -1,21 +1,25 @@
 <?php
 
-require './db_config.php';
+require __DIR__.'/db_config.php';
 class db_connect {
-	$conn;
+	private $conn;
 
-	__construct() {
-		
+	function __construct() {
+
 	}
 	public function connect() {
-		$conn=new mysqli(DB_HOST,USER,PASSWORD,DB_NAME);
-		if ($conn->connect_errno) {
-			die('Connect Error: '.$conn->connect_errno);
+		$this->conn=new mysqli(DB_HOST,USER,PASSWORD,DB_NAME);
+		if ($this->conn->connect_errno) {
+			die('Connect Error: '.$this->conn->connect_errno);
 		}
-		return $conn;
+		return $this->conn;
 	}
 
 	public function disconnect() {
-		$conn->close();
+		$this->conn->close();
+	}
+
+	function __destruct() {
+
 	}
 }
